@@ -1,23 +1,23 @@
-
 #tasks-table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 30px;
 }
 
-#tasks-table td, #tasks-table  th {
+#tasks-table td, #tasks-table th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
 #tasks-table tr:nth-child(even){background-color: #f2f2f2;}
 
-#tasks-table  tr:hover {background-color: #ddd;}
+#tasks-table tr:hover {background-color: #ddd;}
 
-#tasks-table {
+#tasks-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #4CAF50;
-    color: black;
+    color: white;
 }
