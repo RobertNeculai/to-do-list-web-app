@@ -9,6 +9,24 @@ window.ToDoList ={
             ToDoList.displayTasks(JSON.parse(response));
         })
     },
+    createTasks: function () {
+        let descriptionValue=$("#description-field").val();
+        let deadlineValue=$("#deadline-field").val();
+        let requestBody={
+            description: descriptionValue,
+            deadline: deadlineValue
+        };
+        $.ajax({
+            url: ToDoList.API_BASE_URL,
+            method: "POST",
+            //also known as MIME type
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function (requestBody) {
+            ToDoList.getTasks();
+        })
+
+    },
     getTaskRow: function (task) {
         // spread operator( ... )
         let formattedDeadline = new Date(...task.deadline).toLocaleDateString("ro");
@@ -28,7 +46,15 @@ window.ToDoList ={
         var tableBody = '';
         tasks.forEach(task => tableBody+=ToDoList.getTaskRow(task));
         $("#tasks-table tbody").html(tableBody);
+    },
+    bindEvents:function () {
+        //capturing Submit-form event for function binding
+        $("#new-task-form").submit(function (event) {
+            event.preventDefault();
+            ToDoList.createTasks();
+        })
     }
 };
 //from api
 ToDoList.getTasks();
+ToDoList.bindEvents();
